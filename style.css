@@ -68,6 +68,10 @@ a {
     background-color: var(--bg-light);
 }
 
+/* Utils for responsive text wrapping */
+.ib { display: inline-block; }
+.hidden-pc { display: none !important; }
+
 /* Typography */
 .section-title {
     font-size: clamp(2rem, 5vw, 2.7rem);
@@ -617,15 +621,21 @@ a {
 @media (max-width: 768px) {
     .section { padding: 60px 0; }
     
+    .hidden-pc { display: inline-block !important; }
+    .hidden-sp { display: none !important; }
+
     .hero {
-        padding-top: 80px;
+        padding-top: 65px; /* ヘッダーの高さ分だけスペースを空け、画像の頭が隠れないようにする */
         flex-direction: column;
         text-align: center;
+        min-height: auto;
+        padding-bottom: 60px;
     }
     .hero-bg {
-        position: relative;
-        height: 70vw;
-        min-height: 300px;
+        position: relative; /* 絶対配置を解除してヘッダー下に自然に配置 */
+        width: 100%;
+        height: 85vw; /* 縦幅をレスポンシブに確保 */
+        max-height: 500px;
         mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
         -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     }
@@ -633,18 +643,24 @@ a {
         background: transparent;
     }
     .hero-content {
-        margin-top: -50px;
-        padding: 0 15px;
+        margin-top: -20vw; /* フェード部分にテキストを引き上げる */
+        padding: 0 20px;
+    }
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+        margin-bottom: 16px;
     }
     .hero-badge-wrap {
         justify-content: center;
+        margin-bottom: 18px;
     }
     .urgency-box {
-        text-align: left;
+        text-align: center;
         margin: 30px auto;
-        padding: 20px;
-        background: rgba(255,255,255,0.9);
-        backdrop-filter: blur(5px);
+        padding: 24px 20px;
+        background: var(--bg-white);
+        box-shadow: var(--shadow-float);
+        border: 1px solid var(--glass-border);
     }
     .feature-item, .feature-item.reverse {
         flex-direction: column;
